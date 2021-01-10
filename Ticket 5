@@ -1,0 +1,192 @@
+//--------------------5.1---------
+
+#include <stdio.h>
+#include <malloc.h>
+int main()
+{
+    int n, m;
+    int jMin = 0, point = 0;
+    int max = 0, min = 0;
+    int** matrix;
+    printf("Enter a size of the first matrix \n");
+    printf("Enter a number of strings: \n");
+    scanf_s("%d", &n);
+    printf("Enter a number of columns: \n");
+    scanf_s("%d", &m);
+
+    matrix = (int**)calloc(n, sizeof(int*));
+    for (int i = 0; i < n; i++)
+    {
+        matrix[i] = (int*)calloc(m, sizeof(int));
+        {
+            for (int j = 0; j < m; j++)
+            {
+                printf("[%d][%d] ", i, j);
+                scanf_s("%d", &matrix[i][j]);
+            }
+        }
+    }
+
+    for (int i = 0; i < n; i++)
+    {
+        for (int j = 0; j < m; j++)
+        {
+            printf("%5d", matrix[i][j]);
+        }
+        printf("\n");
+    } 
+
+    printf("\n");
+    
+    int i = 0, j = 0, k = 0;
+    min = matrix[i][j];
+    max = matrix[i][j];
+    for (i = 0; i < n; i++)
+    {
+        for (j = 0; j < m - 1; j++)
+        {
+            if (matrix[i][j] < min)
+            {
+                min = matrix[i][j];
+                jMin = j;
+            }
+            /*if (matrix[i][j] > matrix[i][0])
+            {
+            }*/
+            /*else
+            {
+                min = matrix[i][j + 1];
+                jMin = j + 1;
+            }*/
+        }
+
+        while (k < n - 1)
+        {
+            if (matrix[k][jMin] > max)
+            {
+                max = matrix[k][jMin];
+            }
+            k++;
+        }
+
+        if (min == max)
+        {
+            point = 1;
+            printf("The first point is %d\n", min);
+            continue;
+        }
+
+    }
+
+    if (point == 0)
+    {
+        printf("There is no point");
+    }
+
+
+
+    for (int i = 0; i < n; i++)
+    {
+        free(matrix[i]);
+    }
+
+    free(matrix);
+
+    return 0;
+}
+
+
+
+//----------------5.2-----------
+//нужна только функция
+
+#include <stdio.h>
+//#include <malloc.h>
+//#include <string.h>
+//void InsertWord(char* first, char* second);
+//int main()
+//{
+//	char* firstString;
+//	char* secondString;
+//	int n, m;
+//
+//	printf("Enter a size of the First String: \n");
+//	scanf_s("%d", &n);
+//	printf("Enter a size of the Second String: \n");
+//	scanf_s("%d", &m);
+//
+//	rewind(stdin);
+//	printf("Enter the First String: \n");
+//	firstString = (char*)calloc(n + 1, sizeof(char));
+//	fgets(firstString, n + 1, stdin);
+//	rewind(stdin);
+//	printf("Enter the Second String: \n");
+//	secondString = (char*)calloc(m + 1, sizeof(char));
+//	fgets(secondString, m + 1, stdin);
+//	rewind(stdin);
+//
+//	puts(firstString);
+//	//printf("\n");
+//	puts(secondString);
+//
+//	InsertWord(firstString, secondString);
+//
+//	free(firstString);
+//	free(secondString);
+//	return 0;
+//}
+//
+//void InsertWord(char* first, char* second)
+//{
+//	int k;
+//	int i = 0;
+//	int j = 0;
+//	int firstStringLength = 0, secondStringLength = 0;
+//	while (first[i] != '\0' && first[i] != '\n')
+//	{
+//		i++;
+//		firstStringLength++;
+//	}
+//	while (second[j] != '\0' && second[j] != '\n')
+//	{
+//		j++;
+//		secondStringLength++;
+//	}
+//
+//	printf("Enter a number: \n");
+//	scanf_s("%d", &k);
+//
+//	if (firstStringLength > secondStringLength)
+//	{
+//		first = (char*)realloc( first, firstStringLength + secondStringLength + 2);
+//		for (i = firstStringLength + 1; i > k; i--)
+//		{
+//			first[i + secondStringLength] = first[i];
+//		}
+//		j = 0;
+//		for (i = k; i < k + secondStringLength; i++)
+//		{
+//			first[i] = second[j];
+//			j++;
+//		}
+//
+//		first[firstStringLength + secondStringLength + 1] = '\0';
+//		puts(first);
+//	}
+//	else
+//	{
+//		second = (char*)realloc(second, firstStringLength + secondStringLength + 2);
+//		for (i = secondStringLength + 1; i > k; i--)
+//		{
+//			second[i + firstStringLength] = second[i];
+//		}
+//		j = 0;
+//		for (i = k; i < k + firstStringLength; i++)
+//		{
+//			second[i] = first[j];
+//			j++;
+//		}
+//		second[firstStringLength + secondStringLength + 1] = '\0';
+//		puts(second);
+//	}
+//}
